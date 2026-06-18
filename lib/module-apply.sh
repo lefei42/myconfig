@@ -45,7 +45,7 @@ for f in "${FILES[@]}"; do
         exit 1
     fi
 done
-for d in "${DIRS[@]-}"; do
+for d in "${DIRS[@]}"; do
     if [ ! -d "$SOURCE_DIR/$d" ]; then
         echo "✗ 源目录不存在: $SOURCE_DIR/$d"
         exit 1
@@ -61,7 +61,7 @@ if [ "$BACKUP_ENABLED" = "true" ]; then
     for f in "${FILES[@]}"; do
         cp "$TARGET_DIR/$f" "$BACKUP_DIR/" 2>/dev/null || true
     done
-    for d in "${DIRS[@]-}"; do
+    for d in "${DIRS[@]}"; do
         [ -d "$TARGET_DIR/$d" ] && cp -r "$TARGET_DIR/$d" "$BACKUP_DIR/"
     done
     echo "→ 备份已保存至: $BACKUP_DIR"
@@ -72,7 +72,7 @@ for f in "${FILES[@]}"; do
     mkdir -p "$(dirname "$TARGET_DIR/$f")"
     cp "$SOURCE_DIR/$f" "$TARGET_DIR/$f"
 done
-for d in "${DIRS[@]-}"; do
+for d in "${DIRS[@]}"; do
     mkdir -p "$TARGET_DIR/$d"
     cp -r "$SOURCE_DIR/$d/"* "$TARGET_DIR/$d/" 2>/dev/null || true
 done
@@ -87,5 +87,7 @@ if [ -n "${RELOAD_CMD:-}" ]; then
         echo "  ${RELOAD_HINT:-重载失败，请手动重载}"
     fi
 else
-    [ -n "${RELOAD_HINT:-}" ] && echo "  ${RELOAD_HINT:-}"
+    if [ -n "${RELOAD_HINT:-}" ]; then
+        echo "  ${RELOAD_HINT:-}"
+    fi
 fi

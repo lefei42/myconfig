@@ -53,7 +53,11 @@ while [ $# -gt 0 ]; do
 done
 
 # 未指定模块时默认部署全部
-[ ${#MODULES[@]} -eq 0 ] && MODULES=(niri waybar)
+[ ${#MODULES[@]} -eq 0 ] && MODULES=(
+    niri
+    waybar
+    waypaper
+    )
 
 # 统一时间戳，所有模块在同一次部署中共享同一时间戳
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
