@@ -3,9 +3,9 @@ set -euo pipefail
 
 SOURCE_DIR="$(cd "$(dirname "$0")" && pwd)"
 TARGET_DIR="$HOME/.config/niri"
-BACKUP_ENABLED="${1:-true}"
+BACKUP_ENABLED="${1:-false}"
 
-if [ "$BACKUP_ENABLED" != "false" ]; then
+if [ "$BACKUP_ENABLED" = "true" ]; then
     BACKUP_DIR="$TARGET_DIR/backup/$(date +%Y%m%d-%H%M%S)"
     mkdir -p "$BACKUP_DIR"
     cp "$TARGET_DIR/config.kdl" "$BACKUP_DIR/" 2>/dev/null || true
@@ -19,3 +19,4 @@ cp "$SOURCE_DIR/cfg/"*.kdl "$TARGET_DIR/cfg/"
 
 echo "✓ niri 配置已应用"
 echo "  如需重载: niri msg action reload"
+

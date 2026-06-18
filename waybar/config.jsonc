@@ -1,0 +1,88 @@
+{
+    "layer": "top",
+    "spacing": 0,
+    "height": 30,
+    "margin":"2 4 2 4",
+
+
+    "modules-left": [
+        "custom/logo",
+        "niri/workspaces",
+        "niri/window"
+    ],
+    "modules-center": [
+        "clock",
+    ],
+    "modules-right": [
+        "tray",
+        "network",
+        "pulseaudio",
+        "cpu",
+        "memory",
+        "temperature"
+    ],
+    //模块配置
+    "custom/logo": {
+        "format": "󰣇"
+    },
+    "niri/workspaces": {
+        "format": "{}"
+    },
+    "niri/window": {
+        "format": "{}",
+        "max-length": 20,
+        "rewrite": {
+            "(.*) - Mozilla Firefox": "🌎 $1",
+            "(.*) - fish": "> [$1]"
+        }
+    },
+   "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",  // 在提示框中显示日历
+    "calendar": {
+        "mode": "month",          // 显示模式: "year"(年历) 或 "month"(月历)
+        "mode-mon-col": 4,      // 年历模式下，每行的月份数
+        "weeks-pos": "left",   // 周数显示位置: "left" 或 "right"
+        "format": {             // 自定义日历各部分样式 (支持 Pango 标记)
+            "months": "<span color='#ffead3'><b>{}</b></span>",
+            "days": "<span color='#ecc6d9'><b>{}</b></span>",
+            "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+            "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+        }
+    }
+},
+
+"network":{
+    "format":"  {signalStrength}%"
+},
+
+"pulseaudio":{
+    "format":" {volume}%",
+    "on-click": "pavucontrol",
+},
+    "cpu": {
+        "interval": 1,
+        "format": " {usage:2}%",
+        "max-length": 10,
+        "tooltip":false
+    },
+    "memory": {
+    "interval": 30,
+    "format": " {}%",
+    "max-length": 10
+},
+"tray": {
+    "icon-size": 21,
+    "spacing": 10,
+    "show-passive-items": true
+},
+
+ "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    // "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "format": " {temperatureC}°C"
+}
+
+}
