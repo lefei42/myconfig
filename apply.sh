@@ -57,6 +57,7 @@ done
     niri
     waybar
     waypaper
+    wofi
     )
 
 # 统一时间戳，所有模块在同一次部署中共享同一时间戳
