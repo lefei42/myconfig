@@ -1,0 +1,19 @@
+include "cfg/input.kdl"
+include "cfg/output.kdl"
+include "cfg/binds.kdl"
+include "cfg/layout.kdl"
+include "cfg/startup.kdl"
+include "cfg/window-rules.kdl"
+
+environment {
+    XMODIFIERS "@im=fcitx"
+    LC_ALL "zh_CN.UTF-8"
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+hotkey-overlay { }
+
+animations { }
