@@ -52,13 +52,21 @@
     }
 },
 
-"network":{
-    "format":"  {signalStrength}%"
+"network": {
+    "format": "  {signalStrength}%",
+    "format-ethernet": " 已连接",
+    "format-disconnected": " 未连接",
+    "tooltip-format": "{ifname}\nIP: {ipaddr}\n网关: {gwaddr}\n信号: {signalStrength}%",
+    "interval": 30
 },
 
-"pulseaudio":{
-    "format":" {volume}%",
+"pulseaudio": {
+    "format": "  {volume}%",
+    "format-muted": " {volume}%",
     "on-click": "pavucontrol",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
 },
     "cpu": {
         "interval": 1,
