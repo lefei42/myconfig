@@ -27,11 +27,17 @@ fi
 echo "可用备份:"
 for i in "${!SNAPSHOTS[@]}"; do
     ts="${SNAPSHOTS[$i]}"
-    # 获取该时间戳包含哪些模块
+    # 读取 profile 信息
+    profile=$(cat "$BACKUP_DIR/$ts/.profile" 2>/dev/null || echo "")
+    # 获取该时间戳包含哪些模块（ls 默认不显示 . 开头的隐藏文件）
     modules=$(ls "$BACKUP_DIR/$ts" 2>/dev/null | tr '\n' ' ')
     # 将 20250618-153000 格式化为 2025-06-18 15:30
     pretty="${ts:0:4}-${ts:4:2}-${ts:6:2} ${ts:9:2}:${ts:11:2}"
-    echo "  $((i+1))  $pretty  ($modules)"
+    if [ -n "$profile" ]; then
+        echo "  $((i+1))  $pretty  [$profile]  ($modules)"
+    else
+        echo "  $((i+1))  $pretty  ($modules)"
+    fi
 done
 echo "  0  退出"
 

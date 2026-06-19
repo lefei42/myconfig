@@ -64,6 +64,10 @@ if [ "$BACKUP_ENABLED" = "true" ]; then
     for d in "${DIRS[@]}"; do
         [ -d "$TARGET_DIR/$d" ] && cp -r "$TARGET_DIR/$d" "$BACKUP_DIR/"
     done
+    # 记录本次备份所属的 profile
+    if [ -n "${PROFILE_DIR:-}" ] && [ ! -f "$PROJECT_DIR/backup/$TIMESTAMP/.profile" ]; then
+        echo "$(basename "$PROFILE_DIR")" > "$PROJECT_DIR/backup/$TIMESTAMP/.profile"
+    fi
     echo "→ 备份已保存至: $BACKUP_DIR"
 fi
 
@@ -76,6 +80,27 @@ for d in "${DIRS[@]}"; do
     mkdir -p "$TARGET_DIR/$d"
     cp -r "$SOURCE_DIR/$d/"* "$TARGET_DIR/$d/" 2>/dev/null || true
 done
+
+# ------ Profile 覆盖层 ------
+# 在共享配置部署后，用 profile 中的同名文件替换
+if [ -n "${PROFILE_DIR:-}" ]; then
+    OVERRIDE_DIR="$PROFILE_DIR/modules/$MODULE"
+    if [ -d "$OVERRIDE_DIR" ]; then
+        for f in "${FILES[@]}"; do
+            if [ -f "$OVERRIDE_DIR/$f" ]; then
+                mkdir -p "$(dirname "$TARGET_DIR/$f")"
+                cp "$OVERRIDE_DIR/$f" "$TARGET_DIR/$f"
+                echo "  (profile 覆盖) $f"
+            fi
+        done
+        for d in "${DIRS[@]}"; do
+            if [ -d "$OVERRIDE_DIR/$d" ]; then
+                cp -r "$OVERRIDE_DIR/$d/"* "$TARGET_DIR/$d/" 2>/dev/null || true
+                echo "  (profile 覆盖) $d/"
+            fi
+        done
+    fi
+fi
 
 echo "✓ $MODULE 配置已应用"
 
