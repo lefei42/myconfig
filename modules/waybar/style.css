@@ -1,3 +1,18 @@
+@define-color logo #2e9afe;
+@define-color workspace #5e81ac;
+@define-color workspace-focused #8fbcbb;
+@define-color focused-border rgba(143, 188, 187, 0.4);
+@define-color window #d8dee9;
+@define-color clock #b48ead;
+@define-color network #a3be8c;
+@define-color network-disconnected #bf616a;
+@define-color pulseaudio #88c0d0;
+@define-color pulseaudio-muted #4c566a;
+@define-color cpu #ebcb8b;
+@define-color memory #d08770;
+@define-color temperature #8fbcbb;
+@define-color temperature-critical #bf616a;
+
 * {
     border: none;
     font-size: 16px;
@@ -23,22 +38,6 @@ window#waybar {
     padding: 0 2px;
 }
 
-/* ===== 颜色表 =====
- *   Logo:       #2e9afe
- *   Workspace:  #5e81ac
- *   Focused:    #8fbcbb
- *   窗口标题:   #d8dee9
- *   时钟:       #b48ead
- *   网络:       #a3be8c
- *   断开:       #bf616a
- *   音频:       #88c0d0
- *   静音:       #4c566a
- *   CPU:        #ebcb8b
- *   内存:       #d08770
- *   温度:       #8fbcbb
- *   临界:       #bf616a
- * ===================== */
-
 #window,
 #workspaces,
 #clock,
@@ -53,58 +52,58 @@ window#waybar {
 }
 
 #custom-logo {
-    color: #2e9afe;
+    color: @logo;
     font-size: 20px;
     padding: 0 8px;
 }
 
 #workspaces button {
     padding: 0 4px;
-    color: #5e81ac;
+    color: @workspace;
 }
 
 #workspaces button.focused {
-    border: 1px solid rgba(143, 188, 187, 0.4);
+    border: 1px solid @focused-border;
     padding: 0 6px;
-    color: #8fbcbb;
+    color: @workspace-focused;
 }
 
 #window {
-    color: #d8dee9;
+    color: @window;
 }
 
 #clock {
-    color: #b48ead;
+    color: @clock;
 }
 
 #network {
-    color: #a3be8c;
+    color: @network;
 }
 
 #network.disconnected {
-    color: #bf616a;
+    color: @network-disconnected;
 }
 
 #pulseaudio {
-    color: #88c0d0;
+    color: @pulseaudio;
 }
 
 #pulseaudio.muted {
-    color: #4c566a;
+    color: @pulseaudio-muted;
 }
 
 #cpu {
-    color: #ebcb8b;
+    color: @cpu;
 }
 
 #memory {
-    color: #d08770;
+    color: @memory;
 }
 
 #temperature {
-    color: #8fbcbb;
+    color: @temperature;
 }
 
 #temperature.critical {
-    color: #bf616a;
+    color: @temperature-critical;
 }
