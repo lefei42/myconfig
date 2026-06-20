@@ -1,20 +1,43 @@
 * {
     border: none;
     font-size: 16px;
-    font-family: FariCode;
+    font-family: FiraCode;
     padding: 0 2px;
     min-height: 0;
 }
 
-window#waybar {
-    border: 1px solid rgba(65, 72, 104, 0.6);
-    border-radius: 6px;
-    background: rgba(25, 25, 25, 0.758);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.385);
+:root {
+    --bg: rgba(25, 25, 25, 0.758);
+    --border-color: rgba(65, 72, 104, 0.6);
+    --shadow-color: rgba(0, 0, 0, 0.385);
+
+    --text: #e5e9f0;
+    --text-bright: #d8dee9;
+
+    --logo: #2e9afe;
+    --workspace: #5e81ac;
+    --workspace-focused: #8fbcbb;
+    --workspace-focused-border: rgba(143, 188, 187, 0.4);
+    --window: #d8dee9;
+    --clock: #b48ead;
+    --network: #a3be8c;
+    --network-disconnected: #bf616a;
+    --pulseaudio: #88c0d0;
+    --pulseaudio-muted: #4c566a;
+    --cpu: #ebcb8b;
+    --memory: #d08770;
+    --temperature: #8fbcbb;
+    --temperature-critical: #bf616a;
+    --tray: #d8dee9;
 }
 
+window#waybar {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
 
-/* 屏幕四周边距 */
 #waybar>box {
     padding: 2px 2px;
 }
@@ -25,37 +48,73 @@ window#waybar {
     padding: 0 2px;
 }
 
-.module {
-    
-    padding: 0 4px;
-}
-
-
-/*模块基础设置*/
 #window,
 #workspaces,
 #clock,
 #network,
-#custom-logo {
+#custom-logo,
+#tray,
+#pulseaudio,
+#cpu,
+#memory,
+#temperature {
+    color: var(--text);
     padding: 0 2px;
 }
 
-
 #custom-logo {
-    color: rgb(2, 148, 253);
+    color: var(--logo);
     font-size: 20px;
     padding: 0 8px;
 }
 
 #workspaces button {
     padding: 0 4px;
-    color: rgb(40, 154, 254);
+    color: var(--workspace);
 }
 
 #workspaces button.focused {
-    /* background: #64727D; */
-    border: 1px solid rgba(255, 255, 255, 0.379);
+    border: 1px solid var(--workspace-focused-border);
     padding: 0 6px;
-    color: greenyellow;
-    /* border-bottom: 3px solid white; */
+    color: var(--workspace-focused);
+}
+
+#window {
+    color: var(--window);
+}
+
+#clock {
+    color: var(--clock);
+}
+
+#network {
+    color: var(--network);
+}
+
+#network.disconnected {
+    color: var(--network-disconnected);
+}
+
+#pulseaudio {
+    color: var(--pulseaudio);
+}
+
+#pulseaudio.muted {
+    color: var(--pulseaudio-muted);
+}
+
+#cpu {
+    color: var(--cpu);
+}
+
+#memory {
+    color: var(--memory);
+}
+
+#temperature {
+    color: var(--temperature);
+}
+
+#temperature.critical {
+    color: var(--temperature-critical);
 }
