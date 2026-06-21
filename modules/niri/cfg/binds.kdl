@@ -51,6 +51,10 @@ binds{
     Mod+Ctrl+Up         { move-window-up-or-to-workspace-up; }
     Mod+Ctrl+Right      { move-column-right; }
 
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+
     //显示器焦点
     Mod+Shift+H         { focus-monitor-left; }
     Mod+Shift+J         { focus-monitor-down; }
