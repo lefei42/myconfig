@@ -4,6 +4,7 @@ spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 //输入法
 spawn-at-startup "fcitx5"
 
+
 //剪切板
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
@@ -11,5 +12,5 @@ spawn-at-startup "waybar"
 
 
 spawn-at-startup "awww-daemon"
-spawn-at-startup "awww-daemon -n awww_backgrand"
+spawn-at-startup "awww-daemon" "-n" "backgrand"
 spawn-at-startup "waypaper" "--restore"
