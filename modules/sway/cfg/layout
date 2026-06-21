@@ -1,0 +1,13 @@
+gaps inner 8
+gaps outer 4
+
+smart_borders on
+smart_gaps on
+
+default_border pixel 1
+default_floating_border pixel 1
+
+client.focused          #7fc8ff #7fc8ff #7fc8ff #000000
+client.focused_inactive #505050 #505050 #505050 #000000
+client.unfocused        #505050 #505050 #505050 #000000
+client.urgent           #9b0000 #9b0000 #9b0000 #000000

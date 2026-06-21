@@ -1,0 +1,9 @@
+for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable
+
+for_window [app_id="cliphist-tui"] {
+    floating enable
+    resize set width 625px height 700px
+    move position 0 18
+}
+
+for_window [app_id="pavucontrol"] floating enable

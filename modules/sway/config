@@ -1,0 +1,16 @@
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $screenshot_dir ~/Pictures/Screenshots
+
+font pango:Noto Sans CJK SC 10
+floating_modifier $mod
+
+include cfg/input
+include cfg/output
+include cfg/layout
+include cfg/startup
+include cfg/window-rules
+include cfg/binds
