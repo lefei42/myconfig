@@ -49,16 +49,21 @@ if [ -n "${PROFILE_DIR:-}" ]; then
 fi
 
 # ------ 前置校验 ------
+# 检查源文件/目录是否存在（base 模块或 profile 覆盖层均可）
 for f in "${FILES[@]}"; do
     if [ ! -f "$SOURCE_DIR/$f" ]; then
-        echo "✗ 源文件不存在: $SOURCE_DIR/$f"
-        exit 1
+        if [ -z "${PROFILE_DIR:-}" ] || [ ! -f "$PROFILE_DIR/modules/$MODULE/$f" ]; then
+            echo "✗ 源文件不存在: $SOURCE_DIR/$f"
+            exit 1
+        fi
     fi
 done
 for d in "${DIRS[@]}"; do
     if [ ! -d "$SOURCE_DIR/$d" ]; then
-        echo "✗ 源目录不存在: $SOURCE_DIR/$d"
-        exit 1
+        if [ -z "${PROFILE_DIR:-}" ] || [ ! -d "$PROFILE_DIR/modules/$MODULE/$d" ]; then
+            echo "✗ 源目录不存在: $SOURCE_DIR/$d"
+            exit 1
+        fi
     fi
 done
 
@@ -83,12 +88,16 @@ fi
 
 # ------ 部署 ------
 for f in "${FILES[@]}"; do
-    mkdir -p "$(dirname "$TARGET_DIR/$f")"
-    cp "$SOURCE_DIR/$f" "$TARGET_DIR/$f"
+    if [ -f "$SOURCE_DIR/$f" ]; then
+        mkdir -p "$(dirname "$TARGET_DIR/$f")"
+        cp "$SOURCE_DIR/$f" "$TARGET_DIR/$f"
+    fi
 done
 for d in "${DIRS[@]}"; do
     mkdir -p "$TARGET_DIR/$d"
-    cp -r "$SOURCE_DIR/$d/"* "$TARGET_DIR/$d/" 2>/dev/null || true
+    if [ -d "$SOURCE_DIR/$d" ]; then
+        cp -r "$SOURCE_DIR/$d/"* "$TARGET_DIR/$d/" 2>/dev/null || true
+    fi
 done
 
 # ------ Profile 覆盖层 ------
