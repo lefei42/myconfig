@@ -38,6 +38,16 @@ else
     [ -z "$TIMESTAMP" ] && TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 fi
 
+# ------ Profile 模块扩展 ------
+# 允许 profile 通过 module.conf 追加 FILES/DIRS
+if [ -n "${PROFILE_DIR:-}" ]; then
+    MODULE_CONF="$PROFILE_DIR/modules/$MODULE/module.conf"
+    if [ -f "$MODULE_CONF" ]; then
+        source "$MODULE_CONF"
+        echo "  (profile 扩展) $(basename "$MODULE_CONF")"
+    fi
+fi
+
 # ------ 前置校验 ------
 for f in "${FILES[@]}"; do
     if [ ! -f "$SOURCE_DIR/$f" ]; then
