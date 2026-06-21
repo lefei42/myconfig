@@ -30,3 +30,9 @@ window-rule {
     match app-id="pavucontrol"  // 或根音量控制程序匹配
     open-floating true
 }
+
+//overview壁纸
+layer-rule {
+    match namespace="^awww-daemonbackgrand$"
+    place-within-backdrop true
+}

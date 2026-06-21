@@ -5,7 +5,7 @@ set -euo pipefail
 MODULE="waypaper"
 TARGET_DIR="$HOME/.config/waypaper"
 FILES=("config.ini")
-DIRS=()
+DIRS=("scripts")
 PROJECT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 
 source "$PROJECT_DIR/lib/module-apply.sh"
