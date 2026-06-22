@@ -31,6 +31,11 @@ window-rule {
     open-floating true
 }
 
+window-rule{
+    match app-id="waypaper"
+    open-floating true
+}
+
 //overview壁纸
 layer-rule {
     match namespace="^awww-daemonbackgrand$"
