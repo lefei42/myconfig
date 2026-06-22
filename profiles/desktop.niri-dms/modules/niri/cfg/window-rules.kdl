@@ -1,0 +1,38 @@
+// WezTerm 初始配置兼容
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+
+// Firefox 画中画浮动
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// cliphist-tui 浮动窗口
+window-rule {
+    match app-id="cliphist-tui"
+    default-column-width { fixed 625; }
+    default-window-height { fixed 700; }
+    open-floating true
+    default-floating-position x=0 y=18 relative-to="top"
+}
+
+// 全局圆角
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
+
+//音量控件浮动
+window-rule {
+    match app-id="pavucontrol"  // 或根音量控制程序匹配
+    open-floating true
+}
+
+//overview壁纸
+layer-rule {
+    match namespace="^awww-daemonbackgrand$"
+    place-within-backdrop true
+}
